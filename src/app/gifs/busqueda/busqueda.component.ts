@@ -6,11 +6,9 @@ import { Component, OnInit } from '@angular/core';
   styles: [
   ]
 })
-export class BusquedaComponent implements OnInit {
+export class BusquedaComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  buscar(event:any){
+    console.log(event);
   }
-
 }
