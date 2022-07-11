@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-busqueda',
@@ -8,7 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BusquedaComponent {
 
-  buscar(event:any){
-    console.log(event);
+  @ViewChild("txtBuscar")
+  txtBuscar!:ElementRef<HTMLInputElement>;
+
+  buscar(parm:HTMLInputElement){
+    console.log(this.txtBuscar.nativeElement.value);
+    console.log(parm.value);
+    //parm.value="";
+    this.txtBuscar.nativeElement.value="";
   }
 }
