@@ -17,7 +17,7 @@ export class BusquedaComponent {
   buscar(parm:HTMLInputElement){
     let value_ = parm.value;
     if(value_.trim().length===0){return}
-    this.gifService.buscarGifs(value_);
+    this.gifService.setSideBarItems(value_);
     console.log(this.txtBuscar.nativeElement.value);
     //parm.value="";
     this.txtBuscar.nativeElement.value="";
