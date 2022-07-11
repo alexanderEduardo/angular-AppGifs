@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Gif, SearchGifsResponse } from '../interfaces/gif.interface';
 
@@ -8,6 +8,7 @@ import { Gif, SearchGifsResponse } from '../interfaces/gif.interface';
 export class GifsService {
 
   private apiKey:string = "6S1CiUqOZaI9VE21yGtM67fMhAmclfdv";
+  private gifEndPoint:string = "https://api.giphy.com/v1/gifs";
   private _historial:string[]=[];
   public resultados:Gif[]=[];
 
@@ -25,7 +26,7 @@ export class GifsService {
     return [...this._historial];
   }
 
-  buscarGifs(query:string){
+  setSideBarItems(query:string){
     if(query.trim().length===0){return}
     query = query.trim().toLocaleLowerCase(); //quiero almacenar valores minisculas en mi array
     if(this._historial.includes(query)){ return;}
@@ -34,8 +35,17 @@ export class GifsService {
     this._historial=this._historial.splice(0,10);
     //Almacenamos el arreglo en el local storage para persistir los datos 
     localStorage.setItem("historial",JSON.stringify(this._historial));
+    this.searchGifs(query);
+  }
 
-    this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=6S1CiUqOZaI9VE21yGtM67fMhAmclfdv&q=${query}&limit=10`)
+  searchGifs(value:string){
+    
+    const params = new HttpParams();
+    params.set('api_key',this.apiKey);
+    params.set('limit','10');
+    params.set('q',value);
+    
+    this.http.get<SearchGifsResponse>(`/search?api_key=6S1CiUqOZaI9VE21yGtM67fMhAmclfdv&q=${value}&limit=10`)
     .subscribe( res => {
       this.resultados=res.data;
       localStorage.setItem("lastResults",JSON.stringify(this.resultados));
