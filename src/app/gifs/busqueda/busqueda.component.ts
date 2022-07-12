@@ -1,6 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { GifsService } from '../services/gifs.service';
-
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-busqueda',
   templateUrl: './busqueda.component.html',
@@ -21,5 +21,9 @@ export class BusquedaComponent {
     console.log(this.txtBuscar.nativeElement.value);
     //parm.value="";
     this.txtBuscar.nativeElement.value="";
+  }
+
+  showAuthor(){
+    
   }
 }

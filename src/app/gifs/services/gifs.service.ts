@@ -40,12 +40,13 @@ export class GifsService {
 
   searchGifs(value:string){
     
-    const params = new HttpParams();
-    params.set('api_key',this.apiKey);
-    params.set('limit','10');
-    params.set('q',value);
-    
-    this.http.get<SearchGifsResponse>(`/search?api_key=6S1CiUqOZaI9VE21yGtM67fMhAmclfdv&q=${value}&limit=10`)
+    const params = new HttpParams()
+    .set('api_key',this.apiKey)
+    .set('q',value)
+    .set('limit','10');
+
+    console.log(params.toString())
+    this.http.get<SearchGifsResponse>(`${this.gifEndPoint}/search`,{params})
     .subscribe( res => {
       this.resultados=res.data;
       localStorage.setItem("lastResults",JSON.stringify(this.resultados));
