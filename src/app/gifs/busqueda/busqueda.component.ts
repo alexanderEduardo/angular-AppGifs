@@ -4,8 +4,7 @@ import Swal from 'sweetalert2';
 @Component({
   selector: 'app-busqueda',
   templateUrl: './busqueda.component.html',
-  styles: [
-  ]
+  styleUrls: ['./busqueda.component.css']
 })
 export class BusquedaComponent {
 
@@ -24,6 +23,6 @@ export class BusquedaComponent {
   }
 
   showAuthor(){
-    
+    Swal.fire('El creador de este proyecto ha sido Alexander Peña 😃');
   }
 }
