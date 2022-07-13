@@ -14,13 +14,16 @@ export class SidebarComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  get historial() : string[]{
+  get historial() : string[] {
     return this.gifService.historial;
   }
 
-  buscar(item:string){
+  buscar(item:string) {
     console.log(item);
     this.gifService.searchGifs(item);
   }
 
+  deleteItem(value : string) {
+    this.gifService.deleteItemInSideBar(value);
+  }
 }
