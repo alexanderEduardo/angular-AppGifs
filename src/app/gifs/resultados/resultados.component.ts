@@ -13,9 +13,15 @@ export class ResultadosComponent{
     return this.gifService!.resultados;
   }
   
+  public clicked : boolean = false;
   constructor(private gifService:GifsService) { }
 
-
+  zoomImg(img : any) {
+    if (this.clicked) 
+      img.style.transform = 'scale(1.5)';
+    else 
+      img.style.transform = 'scale(1)'; 
+  }
 
 
 }
